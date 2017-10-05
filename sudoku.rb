@@ -53,7 +53,6 @@ class SudokuGame
   def parse_val(string)
     Integer(string)
   end
-
   def play_turn
     board.render
     pos = get_pos
@@ -62,9 +61,10 @@ class SudokuGame
   end
 
   def run
-    play_turn until solved?
-    board.render
-    puts "Congratulations, you win!"
+    play_turn until solved? do
+      board.render
+      puts "Congratulations, you win!"
+    end
   end
 
   def solved?
