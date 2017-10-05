@@ -1,3 +1,4 @@
+require "colorize"
 class Board
   def self.empty_grid
     Array.new(9) do
@@ -109,6 +110,7 @@ class Tile
       @value = new_value
     end
   end
+end
 
 class SudokuGame
   def self.from_file(filename)
@@ -164,9 +166,10 @@ class SudokuGame
   end
 
   def run
-    play_turn until solved?
-    board.render
-    puts "Congratulations, you win!"
+    play_turn until solved? do
+      board.render
+      puts "Congratulations, you win!"
+    end
   end
 
   def solved?
